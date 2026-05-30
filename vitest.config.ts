@@ -1,9 +1,16 @@
-import { defineConfig } from "vitest/config";
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { TanStackStartVite } from "@tanstack/start-vite-plugin";
+import tailwindcss from "@tailwindcss/vite";
+import tsConfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  test: {
-    environment: "jsdom",
-    globals: true,
-    include: ["src/tests/**/*.test.ts", "src/tests/**/*.test.tsx"],
-  },
+  plugins: [
+    TanStackStartVite({
+      target: "vercel",
+    }),
+    react(),
+    tailwindcss(),
+    tsConfigPaths(),
+  ],
 });
